@@ -7,3 +7,4 @@ config.json
 .vscode
 node_modules
 /server/sen/words/*
+dist

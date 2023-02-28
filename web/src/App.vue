@@ -58,7 +58,7 @@ const refushCredit = async () => {
   loadding.value = true
   summary.value = await creditSummary()
   summary.value.total_available = summary.value.total_available.toFixed(2)
-  console.log(summary.value)
+  //console.log(summary.value)
   loadding.value = false
 }
 const updateApiKey = () => {
@@ -67,10 +67,14 @@ const updateApiKey = () => {
 }
 
 const noKey = () => {
-  var ran = Math.floor(Math.random()*10);
-  var timestamp = dayjs().format('mmss')
-  var userNanme = "游客"+timestamp + "" + ran;
-  user_id.value = userNanme;
+  if(user_id.value == "")
+  {
+    var ran = Math.floor(Math.random()*10);
+    var timestamp = dayjs().format('mmss')
+    var userNanme = "游客"+timestamp + "" + ran;
+    user_id.value = userNanme;
+  }
+  
   //visible.value = false
   //window.location.reload()
 }
@@ -144,7 +148,7 @@ onMounted(async () => {
         <div class="relative p-4 w-full overflow-hidden text-gray-600 focus-within:text-gray-400 flex items-center">
           <a-textarea v-model:value="message" :auto-size="{ minRows: 2, maxRows: 5 }" placeholder="请输入消息..."
             class="appearance-none pl-10 py-2 w-full bg-white border border-gray-300 rounded-full text-sm placeholder-gray-800 focus:outline-none focus:border-blue-500 focus:border-blue-500 focus:shadow-outline-blue" />
-          <span class="absolute inset-y-0 right-0 bottom-8 pr-6 flex items-end">
+          <span class="inset-y-0 right-0 bottom-8 flex items-end">
             <a-button shape="round" type="primary" @click="sendMessage">发送</a-button>
           </span>
         </div>
